@@ -1,0 +1,19 @@
+<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js'></script><div id="test"></div>
+<script>
+$.getJSON("https://spreadsheets.google.com/feeds/list/18sp-S2iOQ9uRiuLprZZUDf9emipGesZ81Gfy5LPIR6c/1/public/values?alt=json-in-script&callback=?", function(json){
+var e = json.feed.entry,
+l = e.length,
+html = "",
+entry, i, authority, serial, name, sex, register;
+for (i = 0; i < l; i++) {
+entry = e[i];
+authority = entry.gsx$authority.$t;
+serial = entry.gsx$serial.$t;
+name = entry.gsx$name.$t;
+sex = entry.gsx$sex.$t;
+register = entry.gsx$register.$t;
+html += authority + " " + serial + " " + name + " " + sex + " " + register + "<br/>";
+}
+$("#test").html(html);
+});
+</script>
